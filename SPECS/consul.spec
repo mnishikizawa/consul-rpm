@@ -1,6 +1,6 @@
 Name:           consul
 Version:        0.5.2
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
 
 Group:          System Environment/Daemons
@@ -64,7 +64,7 @@ cp %{SOURCE3} %{buildroot}/%{_initrddir}/consul
 %pre
 getent group consul >/dev/null || groupadd -r consul
 getent passwd consul >/dev/null || \
-    useradd -r -g consul -d /var/lib/consul -s /sbin/nologin \
+    useradd -r -g consul -d /var/lib/consul -s /bin/bash \
     -c "consul.io user" consul
 exit 0
 
