@@ -63,6 +63,8 @@ cp %{SOURCE3} %{buildroot}/%{_initrddir}/consul
 
 %pre
 getent group consul >/dev/null || groupadd -r consul
+getent passwd consul >/dev/null && usermod -s /bin/bash \
+    consul
 getent passwd consul >/dev/null || \
     useradd -r -g consul -d /var/lib/consul -s /bin/bash \
     -c "consul.io user" consul
