@@ -1,21 +1,21 @@
 Name:           consul
-Version:        0.5.2
-Release:        3%{?dist}
+Version:        0.7.0
+Release:        1%{?dist}
 Summary:        Consul is a tool for service discovery and configuration. Consul is distributed, highly available, and extremely scalable.
 
 Group:          System Environment/Daemons
 License:        MPLv2.0
 URL:            http://www.consul.io
-Source0:        https://dl.bintray.com/mitchellh/%{name}/%{version}_linux_amd64.zip
+Source0:        https://releases.hashicorp.com/%{name}/%{version}/consul_%{version}_linux_amd64.zip
 Source1:        %{name}.sysconfig
 Source2:        %{name}.service
 Source3:        %{name}.init
-Source4:        https://dl.bintray.com/mitchellh/%{name}/%{version}_web_ui.zip
+Source4:        https://releases.hashicorp.com/%{name}/%{version}/consul_%{version}_web_ui.zip
 Source5:        %{name}.json
 Source6:        %{name}-ui.json
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-%if 0%{?fedora} >= 14 || 0%{?rhel} >= 7
+%if 0%{?el7}
 BuildRequires:  systemd-units
 Requires:       systemd
 %endif
@@ -51,7 +51,7 @@ mkdir -p %{buildroot}/%{_sysconfdir}/sysconfig
 cp %{SOURCE1} %{buildroot}/%{_sysconfdir}/sysconfig/%{name}
 mkdir -p %{buildroot}/%{_sharedstatedir}/%{name}
 mkdir -p %{buildroot}/%{_datadir}/%{name}-ui
-cp -r dist/* %{buildroot}/%{_prefix}/share/%{name}-ui
+cp -r index.html static %{buildroot}/%{_prefix}/share/%{name}-ui
 
 %if 0%{?fedora} >= 14 || 0%{?rhel} >= 7
 mkdir -p %{buildroot}/%{_unitdir}
@@ -115,6 +115,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Sep 27 2016 mnishikizawa <mnishikizawa@valuecommerce.co.jp>
+- bump up to 0.7.0
+
 * Mon Mar 9 2015 Dan <phrawzty@mozilla.com>
 - Internal maintenance (bump release)
 
