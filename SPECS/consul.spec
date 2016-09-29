@@ -115,7 +115,7 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Tue Sep 27 2016 mnishikizawa <mnishikizawa@valuecommerce.co.jp>
+* Tue Sep 27 2016 mnishikizawa <mnishikizawa@gmail.com>
 - bump up to 0.7.0
 
 * Mon Mar 9 2015 Dan <phrawzty@mozilla.com>
